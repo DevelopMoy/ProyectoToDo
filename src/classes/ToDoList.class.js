@@ -14,7 +14,6 @@ export class ToDoList {
         // ADDING EVENT TO MARK TASK AS COMPLETED
         const taskCheckBox = document.querySelector(`#ch${task.id}`);
         const liItem =document.querySelector(`#c${task.id}`);
-        const itemListHTML =document.querySelector(".todo-list");
 
         taskCheckBox.addEventListener("click",()=>{
             if (taskCheckBox.checked){
@@ -24,18 +23,28 @@ export class ToDoList {
                 this.markAsPending(task.id);
                 liItem.className="view";
             }
-
+            console.log(this);
         });
 
         //ADDING EVENT TO ERASE TASK
 
         const taskDestroyBtn = document.querySelector(`#dt${task.id}`);
         taskDestroyBtn.addEventListener("click",()=>{
-            this.eraseTask(task.id);
-            itemListHTML.removeChild(liItem.parentElement);
-            console.log(this);
+            if (task.state===1){
+                ToDoList.eraseTaskFromHTML(task);
+            }else{
+                this.eraseTask(task.id);
+                ToDoList.eraseTaskFromHTML(task);
+            }
         })
 
+    }
+
+    static eraseTaskFromHTML (task){
+        const liItem =document.querySelector(`#c${task.id}`);
+        const itemListHTML =document.querySelector(".todo-list");
+
+        itemListHTML.removeChild(liItem.parentElement);
     }
 
     markAsComplete (taskId){
@@ -46,9 +55,6 @@ export class ToDoList {
                 break;
             }
         }
-
-
-
     }
 
     markAsPending (taskId){
@@ -61,7 +67,11 @@ export class ToDoList {
     }
 
     eraseCompleted (){
-        this.tasks=this.tasks.filter (task => task.state===0);
+        for (let i=0;i<this.tasks.length;i++){
+            if (this.tasks[i].state===1){
+                ToDoList.eraseTaskFromHTML(this.tasks[i]);
+            }
+        }
     }
 
     eraseTask (taskId){

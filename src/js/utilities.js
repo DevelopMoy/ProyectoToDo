@@ -15,8 +15,5 @@ export const addTaskToDocument = (task)=>{
         </li>
     `;
     listArea.append(mainDiv);
-
-
-
 }
 
