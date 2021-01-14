@@ -6,13 +6,18 @@ import {ToDoList} from './classes/ToDoList.class.js'
 const tasksList = new ToDoList(); // LIST OF TASKS
 const inputTask = document.querySelector(".new-todo");
 
-inputTask.addEventListener("keypress",(e)=>{
+inputTask.addEventListener("keypress",(e)=>{ //
     if (e.key=='Enter'){
         if (inputTask.value){
             tasksList.addTask(new TaskClass(inputTask.value));
             inputTask.value="";
         }
     }
-})
+});
+
+document.querySelector(".clear-completed").addEventListener("click",()=>{
+   tasksList.eraseCompleted();
+    console.log(tasksList);
+});
 
 
