@@ -1,3 +1,6 @@
+import {addTaskToDocument} from '../js/utilities.js'
+
+
 export class ToDoList {
 
     constructor() {
@@ -6,6 +9,7 @@ export class ToDoList {
 
     addTask(task){
         this.tasks.unshift(task); // INSERT IN THE BEGGINING OF THE ARRAY
+        addTaskToDocument(task);
     }
 
     markAsComplete (taskId){
