@@ -5,9 +5,10 @@ import {ToDoList} from './classes/ToDoList.class.js'
 import {addEvents} from "./js/addEvents";
 
 const tasksList = new ToDoList(); // LIST OF TASKS
+console.log(tasksList);
+tasksList.addAllTasksToHTML();
+tasksList.initEvents();
 addEvents(tasksList);
-
-
 
 
 

@@ -18,5 +18,4 @@ export const addEvents = (tasksList)=>{
         console.log(tasksList);
     });
 
-
 }

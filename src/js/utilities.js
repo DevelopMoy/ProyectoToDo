@@ -5,9 +5,9 @@ const listArea = document.querySelector('.todo-list');
 export const addTaskToDocument = (task)=>{
     const mainDiv = document.createElement("div");
     mainDiv.innerHTML=`
-        <li class="view" id="c${task.id}">
+        <li class="${task.state===1?"completed":"view"}" id="c${task.id}">
             <div class="view">
-                <input class="toggle" id="ch${task.id}" type="checkbox">
+                <input class="toggle" id="ch${task.id}" type="checkbox" ${task.state===1?"checked":""}>
                 <label>${task.task}</label>
                 <button class="destroy" id="dt${task.id}"></button>
             </div>
@@ -17,3 +17,6 @@ export const addTaskToDocument = (task)=>{
     listArea.append(mainDiv);
 }
 
+export const addTaskListToHTML =(taskList)=>{
+    taskList.forEach(task => addTaskToDocument(task));
+}
